@@ -27,9 +27,10 @@ const ListItems = () => {
       }
       getCompanies();
       getJobs()
+
     }, []);
 
-
+   
 
     return(
 

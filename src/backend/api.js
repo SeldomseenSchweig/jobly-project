@@ -42,10 +42,11 @@ class JoblyApi {
     let res = await this.request(`companies/${handle}`);
     return res.company;
   }
-
+/** Get details on a all companies. */
 
   static async getCompanies(){
     let res = await this.request(`companies`);
+    console.log('hello')
     return res.companies;
 
   }
