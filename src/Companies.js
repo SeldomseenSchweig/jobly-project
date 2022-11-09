@@ -26,7 +26,9 @@ const Companies = () => {
     let compsList = Object.values(companies)
 
     async function search(name) {
+        console.log(name)
         let companies = await JoblyApi.getCompanies(name);
+        console.log(companies)
         setCompanies(companies);
         }
 

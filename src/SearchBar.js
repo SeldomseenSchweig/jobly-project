@@ -9,22 +9,23 @@ const SearchBar = ({setState, search}) => {
         }
     const handleSubmit = (e) =>{
             e.preventDefault()
-            search()
+            console.log(value)
+            search(value)
 
         }
     return(
-        <form method="get">
+        <form onSubmit={handleSubmit} >
         <label htmlFor="header-search">
             <span className="visually-hidden">Search</span>
         </label>
-        <input onChange={handleChange} onSubmit={handleSubmit}
+        <input onChange={handleChange} 
             type="text"
             id="header-search"
             value={value}
             placeholder="search"
             name="search" 
         />
-        <button type="submit">Search</button>
+        <button >Search</button>
     </form>
 
     )
