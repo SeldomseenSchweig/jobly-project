@@ -7,8 +7,16 @@ import { Route, Switch } from "react-router-dom";
 import ListItems from "./ListItems";
 import Company from "./Company";
 import EditUserForm from "./EditUserForm";
+import Companies from "./Companies";
+import Jobs from "./Jobs";
+
 
 function App() {
+
+
+
+
+
 
 
   return (
@@ -21,15 +29,15 @@ function App() {
               <Home />
             </Route>
             <Route exact path="/companies">
-              <ListItems title="Companies" />
+              <Companies  />
             </Route>
             <Route path="/companies/:handle">
               <Company cantFind="/companies" />
             </Route>
             <Route exact path="/jobs">
-              <ListItems title="Jobs" />
+              <Jobs />
             </Route>
-            <Route path="/editUser">
+            <Route exact path="/editUser">
               <EditUserForm />
             </Route>
             <Route>
