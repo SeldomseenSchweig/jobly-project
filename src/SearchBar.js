@@ -7,7 +7,7 @@ const SearchBar = ({setState, search}) => {
     const handleChange = (e)=>{
         setValue(e.target.value)
         }
-        const handleSubmit = (e) =>{
+    const handleSubmit = (e) =>{
             e.preventDefault()
             search()
 

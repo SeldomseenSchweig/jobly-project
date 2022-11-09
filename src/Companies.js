@@ -38,7 +38,7 @@ const Companies = () => {
 
         
         <div>
-            <SearchBar props={setCompanies} search={search}/>
+            <SearchBar search={search}/>
             <table>
                 <tbody>
             { compsList.map(company => (

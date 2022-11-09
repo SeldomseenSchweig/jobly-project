@@ -36,15 +36,17 @@ const Jobs = () => {
       }, []);
 
     let jobList = Object.values(jobs)
-
-   
+    async function search(name) {
+        let jobs = await JoblyApi.getJobs(name);
+        setJobs(jobs);
+        }
 
 
     return (
 
         
         <div>
-            <SearchBar />
+            <SearchBar search={search} />
             { jobList.map(job => (
             
                 < Card 
