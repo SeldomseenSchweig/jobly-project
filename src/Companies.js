@@ -1,14 +1,10 @@
 import React, {useState, useEffect, } from 'react'
+import { Row } from 'reactstrap';
 import JoblyApi from './backend/api'
 
-import { Redirect } from 'react-router-dom';
-import { 
-    Card, 
-    CardHeader, 
-    CardBody, 
-    CardTitle, 
-    CardText 
-} from 'reactstrap';
+
+import CompanyCard from './CompanyCard';
+import SearchBar from './SearchBar';
 
 
 
@@ -27,14 +23,12 @@ const Companies = () => {
         }
 
         getCompanies();
-      }, []);
+      }, [companies]);
 
 
     let compsList = Object.values(companies)
 
-    if (compsList.length == 0){
-        return <Redirect to="/"/>
-    }else{
+ 
 
     
 
@@ -42,39 +36,25 @@ const Companies = () => {
 
         
         <div>
-            <h1>{title}</h1>
-            { compsList.map(item => (
-                <div>
-                <Card
-                    className="my-2"
-                    color="primary"
-                    outline
-                    style={{
-                    color:"red" ,
-                    borderColor:"black",
-                    borderWidth:"medium",
-                    borderStyle:'solid',
-                    width: "50%",
-                    margin:" 0 auto"}}>
-                <CardHeader>
-            {item.name}     
+            <SearchBar setCompanies={setCompanies}/>
+            <table>
+            { compsList.map(company => (
+                <tr>
+                <CompanyCard company={company}/>
+                </tr>
 
-                </CardHeader>
-                <CardBody>
-
-                    <CardText>
-                    {item.description}
-                    </CardText>
-                </CardBody>
-                </Card>
-                </div>
                 
             ))}
+
+
+            </table>
+            
+
             </div>
 
 
         )
-            }
+            
 } 
 
 export default Companies;

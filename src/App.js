@@ -1,10 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { BrowserRouter } from "react-router-dom";
 import "./App.css";
 import Home from "./Home";
 import NavBar from "./NavBar";
 import { Route, Switch } from "react-router-dom";
-import ListItems from "./ListItems";
 import Company from "./Company";
 import EditUserForm from "./EditUserForm";
 import Companies from "./Companies";
@@ -12,11 +11,6 @@ import Jobs from "./Jobs";
 
 
 function App() {
-
-
-
-
-
 
 
   return (

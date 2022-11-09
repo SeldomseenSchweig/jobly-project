@@ -9,6 +9,7 @@ import {
     CardTitle, 
     CardText 
 } from 'reactstrap';
+import SearchBar from './SearchBar';
 
 
 
@@ -16,34 +17,41 @@ import {
 
 const Jobs = () => {
     const [jobs, setJobs] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
 
 
     useEffect(() => {
 
         async function getJobs() {
-          let jobs = await JoblyApi.getJobs();
-          setJobs(jobs);
-          setIsLoading(false);
+            try {
+                let jobs = await JoblyApi.getJobs();
+                setJobs(jobs);    
+            } catch (error) {
+                console.log(error)
+                
+            }
+
+            
+        
         }
-        getJobs()
-      }, []);
+        setIsLoading(false);
+        getJobs();
+
+      }, [jobs]);
 
     let jobList = Object.values(jobs)
 
-    if (jobList.length == 0){
-        return <Redirect to="/"/>
-    }else{
+   
 
-    
 
     return (
 
         
         <div>
-            <h1>{title}</h1>
-            { jobList.map(item => (
-                <div>
-                <Card
+            <SearchBar setJobs/>
+            { jobList.map(job => (
+            
+                < Card 
                     className="my-2"
                     color="primary"
                     outline
@@ -53,26 +61,29 @@ const Jobs = () => {
                     borderWidth:"medium",
                     borderStyle:'solid',
                     width: "50%",
-                    margin:" 0 auto"}}>
+                    margin:" 10px "}}>
                 <CardHeader>
-            { item.title }     
+                    {job.title}     
 
                 </CardHeader>
                 <CardBody>
+                
+                    {job.equity ? <CardText> Equity: {job.equity}</CardText>: ""}
+                   
 
-                    <CardText>
-                    {item.equity}
-                    </CardText>
+                    { job.salary ? <CardText> Salary: ${job.salary}</CardText> : ''}
+                    
+                    
                 </CardBody>
                 </Card>
-                </div>
+                
                 
             ))}
             </div>
 
 
         )
-            }
+            
 } 
 
 export default Jobs;
