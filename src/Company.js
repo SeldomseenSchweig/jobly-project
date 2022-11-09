@@ -1,8 +1,6 @@
 import React, {useEffect,useState} from 'react'
 import { useParams } from 'react-router-dom';
 import JoblyApi from './backend/api';
-import CompanyCard from './CompanyCard';
-import { Redirect } from 'react-router-dom';
 import JobCard from './JobCard';
 
 const Company = () =>{

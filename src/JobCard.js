@@ -1,16 +1,14 @@
 import React from 'react'
 import { 
-    Card, 
-    CardHeader, 
+    Card,  
     CardBody, 
     CardTitle, 
     CardText,
-    CardSubtitle
+    
 } from 'reactstrap';
 import './Card.css'
 
 const JobCard =({job})=>{
-    console.log(job.title)
 
 
     return (

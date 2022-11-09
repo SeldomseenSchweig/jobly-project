@@ -4,7 +4,7 @@ import {
     Card, 
     CardHeader, 
     CardBody, 
-    CardTitle, 
+     
     CardText 
 } from 'reactstrap';
 import { Link } from 'react-router-dom/cjs/react-router-dom.min';

@@ -1,12 +1,10 @@
 import React, {useState, useEffect, } from 'react'
-import { Redirect } from 'react-router-dom';
 import JoblyApi from './backend/api'
 
 import { 
     Card, 
     CardHeader, 
     CardBody, 
-    CardTitle, 
     CardText 
 } from 'reactstrap';
 import SearchBar from './SearchBar';
@@ -17,7 +15,6 @@ import SearchBar from './SearchBar';
 
 const Jobs = () => {
     const [jobs, setJobs] = useState([]);
-    const [isLoading, setIsLoading] = useState(true);
 
 
     useEffect(() => {
@@ -34,10 +31,9 @@ const Jobs = () => {
             
         
         }
-        setIsLoading(false);
         getJobs();
 
-      }, [jobs]);
+      }, []);
 
     let jobList = Object.values(jobs)
 
@@ -48,7 +44,7 @@ const Jobs = () => {
 
         
         <div>
-            <SearchBar setJobs/>
+            <SearchBar />
             { jobList.map(job => (
             
                 < Card 

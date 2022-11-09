@@ -1,18 +1,36 @@
-import React from 'react'
+import React, {useState} from 'react'
+import { useEffect } from 'react/cjs/react.production.min';
+import { Redirect } from 'react-router-dom';
 
-const SearchBar = () => (
-    <form action="/" method="get">
+const SearchBar = ({setState, title}) => {
+    
+    const [search , setSearch] = useState('')
+    const handleChange = (e)=>{
+        setSearch(e.target.value)
+        }
+        const handleSubmit = () =>{
+            setState(search)
+            return <Redirect to={`/${title}`} />
+
+        }
+
+    return(
+        <form method="get">
         <label htmlFor="header-search">
-            <span className="visually-hidden">Search blog posts</span>
+            <span className="visually-hidden">Search</span>
         </label>
-        <input
+        <input onChange={handleChange} onSubmit={handleSubmit}
             type="text"
             id="header-search"
-            placeholder="Search blog posts"
-            name="s" 
+            value={search}
+            placeholder="search"
+            name="search" 
         />
         <button type="submit">Search</button>
     </form>
-);
+
+    )
+
+    };
 
 export default SearchBar;
