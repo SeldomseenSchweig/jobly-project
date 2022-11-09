@@ -25,6 +25,11 @@ const Companies = () => {
 
     let compsList = Object.values(companies)
 
+    async function search(name) {
+        let companies = await JoblyApi.getCompanies(name);
+        setCompanies(companies);
+        }
+
  
 
     
@@ -33,7 +38,7 @@ const Companies = () => {
 
         
         <div>
-            <SearchBar props={setCompanies} title={companies}/>
+            <SearchBar props={setCompanies} search={search}/>
             <table>
                 <tbody>
             { compsList.map(company => (
@@ -43,11 +48,7 @@ const Companies = () => {
                 
             ))}
              </tbody>
-
-
             </table>
-            
-
             </div>
 
 

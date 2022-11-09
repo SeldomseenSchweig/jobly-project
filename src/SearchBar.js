@@ -1,19 +1,17 @@
 import React, {useState} from 'react'
-import { useEffect } from 'react/cjs/react.production.min';
 import { Redirect } from 'react-router-dom';
 
-const SearchBar = ({setState, title}) => {
+const SearchBar = ({setState, search}) => {
     
-    const [search , setSearch] = useState('')
+    const [value , setValue] = useState('')
     const handleChange = (e)=>{
-        setSearch(e.target.value)
+        setValue(e.target.value)
         }
-        const handleSubmit = () =>{
-            setState(search)
-            return <Redirect to={`/${title}`} />
+        const handleSubmit = (e) =>{
+            e.preventDefault()
+            search()
 
         }
-
     return(
         <form method="get">
         <label htmlFor="header-search">
@@ -22,7 +20,7 @@ const SearchBar = ({setState, title}) => {
         <input onChange={handleChange} onSubmit={handleSubmit}
             type="text"
             id="header-search"
-            value={search}
+            value={value}
             placeholder="search"
             name="search" 
         />
