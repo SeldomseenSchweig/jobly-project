@@ -74,7 +74,7 @@ class JoblyApi {
     console.log(res)
   }
 
-  static async login(values, setUser){
+  static async login(values){
     
 
     let data = {
@@ -83,12 +83,15 @@ class JoblyApi {
     }
     
       let res = this.request('auth/token', data, 'post' )
-      setUser(values.username)
       return res
       
- 
-    
+  }
 
+  static async getUser(){
+
+    let res = this.request(`users/testuser`)
+
+    return res
 
   }
 
