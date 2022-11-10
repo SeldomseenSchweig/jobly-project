@@ -82,7 +82,7 @@ class JoblyApi {
       password:values.password,
     }
 
-    let res = this.login('token', data, 'post' )
+    let res = this.request('token', data, 'post' )
     console.log(res)
   }
 

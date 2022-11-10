@@ -8,7 +8,7 @@ import Company from "./Company";
 import Companies from "./Companies";
 import Jobs from "./Jobs";
 import Signup from "./Signup";
-import JoblyApi from "./backend/api";
+import JoblyApi from "../backend/api";
 import LoginForm from "./LogInForm";
 import ProfileEditForm from "./ProfileEditForm";
 
