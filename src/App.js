@@ -16,21 +16,24 @@ import ProfileEditForm from "./ProfileEditForm";
 function App() {
 
   const [user, setUser] = useState({});
-  const [token,setToken] = useState({})
+  const [token,setToken] = useState({});
 
 useEffect(() => {
   localStorage.setItem('token', JSON.stringify(token));
-}, []);
+}, [token]);
 
   async function register (values){
-  let token = await JoblyApi.register(values);
+  let new_token = await JoblyApi.register(values);
 
 }
 async function login (values){
-   await JoblyApi.login(values);
-  // console.log(token);
-
+    let res = await JoblyApi.login(values, setUser);
+    setToken(res)
+    
 }
+console.log(token)
+console.log(user)
+
 
 
   return (

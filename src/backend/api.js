@@ -74,16 +74,22 @@ class JoblyApi {
     console.log(res)
   }
 
-  static async login(values){
-    console.log(values)
+  static async login(values, setUser){
+    
 
     let data = {
       username:values.username,
       password:values.password,
     }
+    
+      let res = this.request('auth/token', data, 'post' )
+      setUser(values.username)
+      return res
+      
+ 
+    
 
-    let res = this.request('token', data )
-    console.log(res)
+
   }
 
 
