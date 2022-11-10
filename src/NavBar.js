@@ -24,6 +24,12 @@ function NavBar() {
           <NavItem>
             <NavLink to="/"> Log out of Username</NavLink>
           </NavItem>
+          <NavItem>
+            <NavLink to="/signup"> Signup</NavLink>
+          </NavItem>
+          <NavItem>
+            <NavLink to="/login"> Login</NavLink>
+          </NavItem>
         </Nav>
       </Navbar>
     </div>

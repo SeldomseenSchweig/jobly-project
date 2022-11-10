@@ -1,6 +1,8 @@
 import React from "react";
 
-const EditUserForm = ({user}) =>{
+const ProfileEditForm = ({user}) =>{
+
+
     return (
         <h1> form for user information</h1>
     )
@@ -12,4 +14,4 @@ const EditUserForm = ({user}) =>{
 
 }
 
-export default EditUserForm;
+export default ProfileEditForm;

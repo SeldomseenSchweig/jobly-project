@@ -44,15 +44,49 @@ class JoblyApi {
   }
 /** Get details on a all companies. */
 
-  static async getCompanies(){
-    let res = await this.request(`companies`);
+  static async getCompanies(filter){
+    let data = {}
+    if (filter){
+      data = {name:filter}
+    }
+    let res = await this.request(`companies`, data);
     return res.companies;
 
   }
-    static async getJobs(){
-    let res = await this.request(`jobs`);
+    static async getJobs(filter){
+      let data = {}
+      if (filter){
+        data = {title:filter}
+      }
+    let res = await this.request(`jobs`, data );
     return res.jobs;
   }
+  static async register({values}){
+    let data = {
+      username:values.username,
+      password:values.password,
+      firstName:values.firstName,
+      lastname:values.lastName,
+      email:values.email
+    }
+
+    let res = this.request('register', data, 'post' )
+    console.log(res)
+  }
+
+  static async login(values){
+    console.log(values)
+
+    let data = {
+      username:values.username,
+      password:values.password,
+    }
+
+    let res = this.login('token', data, 'post' )
+    console.log(res)
+  }
+
+
 
 }
 
