@@ -53,6 +53,9 @@ class JoblyApi {
     return res.companies;
 
   }
+
+  /** Get details on a all jobs. */
+
     static async getJobs(filter){
       let data = {}
       if (filter){
@@ -61,6 +64,8 @@ class JoblyApi {
     let res = await this.request(`jobs`, data );
     return res.jobs;
   }
+    /**register website */
+
   static async register({values}){
     let data = {
       username:values.username,
@@ -73,6 +78,8 @@ class JoblyApi {
     let res = this.request('register', data, 'post' )
     console.log(res)
   }
+
+    /** login. */
 
   static async login({username,password}){
     

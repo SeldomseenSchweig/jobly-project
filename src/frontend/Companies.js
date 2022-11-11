@@ -10,6 +10,7 @@ import SearchBar from './SearchBar';
 
 
 const Companies = () => {
+    console.log(JoblyApi.token)
 
     const [companies, setCompanies] = useState([]);
 

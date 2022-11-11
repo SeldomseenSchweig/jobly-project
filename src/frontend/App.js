@@ -7,13 +7,14 @@ import { Route, Switch } from "react-router-dom";
 import Company from "./Company";
 import Companies from "./Companies";
 import Jobs from "./Jobs";
-import Signup from "./Signup";
+import SignupForm from "./SignupForm";
 import JoblyApi from "../backend/api";
 import LoginForm from "./LogInForm";
 import ProfileEditForm from "./ProfileEditForm";
 import jwt from "jsonwebtoken";
 import CurrentUserContext from "./CurrentUserContext";
 import useLocalStorage from "./hooks/useLocalStorage";
+import "bootstrap/dist/css/bootstrap.min.css";
 export const TOKEN_STORAGE_ID = "jobly-token";
 
 
@@ -46,13 +47,18 @@ async function getUser(username){
   let user = await JoblyApi.getUser(username);
   setCurrentUser(user)
 }
+function logout() {
+  setCurrentUser(null);
+  setToken(null);
+  JoblyApi.token=null
+}
 
 
   return (
     <div className="App">
       <BrowserRouter>
       <CurrentUserContext.Provider value={currentUser}>
-        <NavBar />
+        <NavBar logout={logout}/>
         <main>
           <Switch>
             <Route exact path="/">
@@ -71,7 +77,7 @@ async function getUser(username){
               <ProfileEditForm />
             </Route>
             <Route exact path="/signup">
-              <Signup register={register}/>
+              <SignupForm register={register}/>
             </Route>
             <Route exact path="/login">
               <LoginForm login={login}/>

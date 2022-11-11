@@ -1,14 +1,16 @@
 import React, {useContext} from "react";
 import { Card, CardBody, CardTitle } from "reactstrap";
+import JoblyApi from "../backend/api";
 import CurrentUserContext from "./CurrentUserContext";
+import { Link } from "react-router-dom";
+import './Home.css'
 
 function Home() {
   const user = useContext(CurrentUserContext);
-  let i = 0
-  console.log(user, i+1)
+  console.log(JoblyApi.token)
  
     return (
-      <section className="col-md-8">
+      <section className="col-md-14">
         <Card>
           <CardBody className="text-center">
             <CardTitle>
@@ -17,9 +19,14 @@ function Home() {
                   Jobly
               </h1>
               <h3> All the jobs in one, convenient place. </h3> 
-              <h2> Welcome Back, </h2>
+              { user? <h2> Welcome Back {user.user.username} </h2>:<h2></h2>}
   
             </CardTitle>
+           
+            <Link to="/signup"> <button  class="btn btn-primary b"> Sign Up</button></Link>
+          
+            <Link to="/login">  <button  class="btn btn-primary b"> Login</button></Link>
+          
           </CardBody>
         </Card>
       </section>

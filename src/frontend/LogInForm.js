@@ -1,5 +1,7 @@
 import React, {useState} from 'react';
 import { useHistory } from 'react-router-dom';
+import './form.css'
+
 
 
 
@@ -20,12 +22,7 @@ const LoginForm = ({login}) =>{
             [name]:value
         }))
     }
-    // const handleUsernameChange = (e) =>{
-    //     setUsername(e.target.value);
-    // }
-    // const handleEmailChange = (e) =>{
-    //     setEmail(e.target.value);
-    // }
+
     const handleSubmit = (e) =>{
         e.preventDefault();
         const {username,password} = formData
@@ -37,19 +34,27 @@ const LoginForm = ({login}) =>{
 
     return (
 
-        <form onSubmit={handleSubmit}>
-
-            <label htmlFor="username"> Username</label>
-            <input 
+        <form  className="offset-lg-4" onSubmit={handleSubmit}>
+            <div className="mb-3">
+            <label 
+            className="form-label"
+            htmlFor="username"> Username</label>
+            <input
+            className="form-control i"
             id="username" 
             type="text" 
             name="username"
             placeholder='username' 
             value={formData.username} 
             onChange={handleChanges}/>
+            </div> 
+            <div className="mb-3">
 
-            <label htmlFor="password">password</label>
-            <input 
+            <label
+            className="form-label"
+             htmlFor="password">password</label>
+            <input
+            className="form-control i"
             id="password" 
             type="password" 
             name="password"
@@ -58,7 +63,11 @@ const LoginForm = ({login}) =>{
             onChange={handleChanges}/>
 
 
-            <button >Submit</button>
+            </div>
+
+
+
+            <button class="btn btn-primary" >Submit</button>
         </form>
     )
 }
