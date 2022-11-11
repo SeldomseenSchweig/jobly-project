@@ -8,20 +8,30 @@ import Company from "./Company";
 import Companies from "./Companies";
 import Jobs from "./Jobs";
 import Signup from "./Signup";
-import JoblyApi from "./backend/api";
+import JoblyApi from "../backend/api";
 import LoginForm from "./LogInForm";
 import ProfileEditForm from "./ProfileEditForm";
+import jwt from "jsonwebtoken";
+import CurrentUserContext from "./CurrentUserContext";
+import useLocalStorage from "./hooks/useLocalStorage";
+export const TOKEN_STORAGE_ID = "jobly-token";
 
 
 function App() {
 
-  const [currentUser, setCurrentUser] = useState({});
-  const [token,setToken] = useState({});
+  const [currentUser, setCurrentUser] = useState("");
+  const [token, setToken] = useLocalStorage(TOKEN_STORAGE_ID);
 
 useEffect(() => {
-  getUser();
+  if(token.token){
+    let info = jwt.decode(token.token)
+    getUser(info.username)
+    JoblyApi.token = info.token
 
-}, [token]);
+  }
+
+}
+, [token]);
 
   async function register (values){
   let new_token = await JoblyApi.register(values);
@@ -29,12 +39,11 @@ useEffect(() => {
 }
 async function login (values){
     let res = await JoblyApi.login(values);
-    JoblyApi.token = res
     setToken(res)
     
 }
-async function getUser(){
-  let user = await JoblyApi.getUser();
+async function getUser(username){
+  let user = await JoblyApi.getUser(username);
   setCurrentUser(user)
 }
 
@@ -42,6 +51,7 @@ async function getUser(){
   return (
     <div className="App">
       <BrowserRouter>
+      <CurrentUserContext.Provider value={currentUser}>
         <NavBar />
         <main>
           <Switch>
@@ -66,11 +76,13 @@ async function getUser(){
             <Route exact path="/login">
               <LoginForm login={login}/>
             </Route>
+            
             <Route>
               <p>Hmmm. I can't seem to find what you want.</p>
             </Route>
           </Switch>
         </main>
+        </CurrentUserContext.Provider>
       </BrowserRouter>
     </div>
   );
