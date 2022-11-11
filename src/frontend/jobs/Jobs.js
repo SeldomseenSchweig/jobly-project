@@ -1,7 +1,7 @@
 import React, {useState, useEffect,useContext } from 'react'
-import JoblyApi from '../backend/api'
+import JoblyApi from '../../backend/api'
 import { Redirect } from 'react-router-dom';
-import CurrentUserContext from "./CurrentUserContext";
+import CurrentUserContext from "../CurrentUserContext";
 
 
 import { 
@@ -10,7 +10,8 @@ import {
     CardBody, 
     CardText 
 } from 'reactstrap';
-import SearchBar from './SearchBar';
+import SearchBar from '../SearchBar';
+import { Button } from 'bootstrap';
 
 
 
@@ -78,10 +79,11 @@ const Jobs = () => {
                     {job.equity ? <CardText> Equity: {job.equity}</CardText>: ""}
                    
 
-                    { job.salary ? <CardText> Salary: ${job.salary}</CardText> : ''}
+                    { job.salary ? <CardText> Salary: ${job.salary} Hello</CardText> : ''}
                     
-                    
+                      
                 </CardBody>
+                
                 </Card>
                 
                 

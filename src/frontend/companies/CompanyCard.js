@@ -1,10 +1,8 @@
 import React from 'react'
-
 import { 
     Card, 
     CardHeader, 
-    CardBody, 
-     
+    CardBody,  
     CardText 
 } from 'reactstrap';
 import { Link } from 'react-router-dom/cjs/react-router-dom.min';
@@ -13,6 +11,7 @@ import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 const CompanyCard = ({company}) =>{
 
 return (
+<>
     <Link exact to={`/companies/${company.handle}`}>
     
     
@@ -41,10 +40,14 @@ return (
     </Card>
     
     </Link>
+
+
+</>
+
 )
 
 
 
 }
 
-export default CompanyCard
+export default CompanyCard;

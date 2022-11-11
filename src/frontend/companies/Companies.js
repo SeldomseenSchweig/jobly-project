@@ -1,8 +1,8 @@
 import React, {useState, useEffect,useContext  } from 'react'
-import JoblyApi from '../backend/api'
+import JoblyApi from '../../backend/api'
 import CompanyCard from './CompanyCard';
-import CurrentUserContext from './CurrentUserContext';
-import SearchBar from './SearchBar';
+import CurrentUserContext from '../CurrentUserContext';
+import SearchBar from '../SearchBar';
 import { Redirect } from 'react-router-dom';
 
 
