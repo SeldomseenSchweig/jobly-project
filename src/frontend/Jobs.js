@@ -1,5 +1,8 @@
-import React, {useState, useEffect, } from 'react'
+import React, {useState, useEffect,useContext } from 'react'
 import JoblyApi from '../backend/api'
+import { Redirect } from 'react-router-dom';
+import CurrentUserContext from "./CurrentUserContext";
+
 
 import { 
     Card, 
@@ -14,6 +17,11 @@ import SearchBar from './SearchBar';
 
 
 const Jobs = () => {
+    const user = useContext(CurrentUserContext)
+    
+    if(!user){
+        return <Redirect to="/"/>
+    }
     const [jobs, setJobs] = useState([]);
 
 
@@ -40,6 +48,7 @@ const Jobs = () => {
         let jobs = await JoblyApi.getJobs(name);
         setJobs(jobs);
         }
+
 
 
     return (

@@ -8,7 +8,7 @@ import CurrentUserContext from "./CurrentUserContext";
 function NavBar(logout) {
   const user = useContext(CurrentUserContext)
  
-    if(user.user ){console.log(user.user.username)};
+    
   
   return (
     <div>

@@ -1,16 +1,20 @@
-import React, {useState, useEffect, } from 'react'
+import React, {useState, useEffect,useContext  } from 'react'
 import JoblyApi from '../backend/api'
-
-
 import CompanyCard from './CompanyCard';
+import CurrentUserContext from './CurrentUserContext';
 import SearchBar from './SearchBar';
+import { Redirect } from 'react-router-dom';
 
 
 
 
 
 const Companies = () => {
-    console.log(JoblyApi.token)
+    let user = useContext(CurrentUserContext)
+
+    if(!user){
+        return <Redirect to="/"/>
+    }
 
     const [companies, setCompanies] = useState([]);
 

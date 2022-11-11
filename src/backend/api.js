@@ -66,18 +66,18 @@ class JoblyApi {
   }
     /**register website */
 
-  static async register({values}){
+  static async register(values){
+    console.log(values)
     let data = {
       username:values.username,
       password:values.password,
       firstName:values.firstName,
-      lastname:values.lastName,
+      lastName:values.lastName,
       email:values.email
     }
 
-    let res = this.request('register', data, 'post' )
-    console.log(res)
-  }
+    let res = this.request('auth/register', data, 'post' )
+  return res  }
 
     /** login. */
 
@@ -108,9 +108,7 @@ class JoblyApi {
 }
 
 // for now, put token ("testuser" / "password" on class)
-JoblyApi.token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZ" +
-    "SI6InRlc3R1c2VyIiwiaXNBZG1pbiI6ZmFsc2UsImlhdCI6MTU5ODE1OTI1OX0." +
-    "FtrMwBQwe6Ue-glIFgz_Nf8XxRT2YecFCiSpYL0fCXc";
+
 
 
 export default JoblyApi;

@@ -3,7 +3,7 @@ import './form.css'
 
 
 
-const Signup = (signup) =>{
+const Signup = ({register}) =>{
 
     const initialState = {
         username:"",
@@ -31,8 +31,8 @@ const Signup = (signup) =>{
     // }
     const handleSubmit = (e) =>{
         e.preventDefault();
-        const {username,email,password, firstName,lastName} = formData
-        alert(`${username} and ${email} and ${password} and ${firstName} and ${lastName} submitted`);
+        console.log(formData);
+        register(formData);
         
         setFormData(initialState);
 
@@ -106,7 +106,7 @@ const Signup = (signup) =>{
             </div>
 
 
-            <button class="btn btn-primary" >Register</button>
+            <button className="btn btn-primary" >Register</button>
 
                 
   

@@ -7,7 +7,6 @@ import './Home.css'
 
 function Home() {
   const user = useContext(CurrentUserContext);
-  console.log(JoblyApi.token)
  
     return (
       <section className="col-md-14">
@@ -23,9 +22,9 @@ function Home() {
   
             </CardTitle>
            
-            <Link to="/signup"> <button  class="btn btn-primary b"> Sign Up</button></Link>
+            <Link to="/signup"> <button  className="btn btn-primary b"> Sign Up</button></Link>
           
-            <Link to="/login">  <button  class="btn btn-primary b"> Login</button></Link>
+            <Link to="/login">  <button  className="btn btn-primary b"> Login</button></Link>
           
           </CardBody>
         </Card>

@@ -24,10 +24,13 @@ function App() {
   const [token, setToken] = useLocalStorage(TOKEN_STORAGE_ID);
 
 useEffect(() => {
+  console.log(token)
   if(token.token){
     let info = jwt.decode(token.token)
-    getUser(info.username)
-    JoblyApi.token = info.token
+    
+    JoblyApi.token = token.token
+    getUser(info.username);
+    
 
   }
 
@@ -36,6 +39,7 @@ useEffect(() => {
 
   async function register (values){
   let new_token = await JoblyApi.register(values);
+  setToken(new_token)
 
 }
 async function login (values){
