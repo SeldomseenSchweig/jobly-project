@@ -17,7 +17,7 @@ function Home() {
                   Jobly
               </h1>
               <h3> All the jobs in one, convenient place. </h3> 
-              { user? <h2> Welcome Back {user.user.username} </h2>:  <>
+              { user.currentUser? <h2> Welcome Back {user.currentUser.user.username} </h2>:  <>
               <Link to="/signup"> <button  className="btn btn-primary b"> Sign Up</button></Link> 
              <Link to="/login">  <button  className="btn btn-primary b"> Login</button></Link></>}
   

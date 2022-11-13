@@ -109,11 +109,12 @@ class JoblyApi {
 
   }
   static async apply(values){
-    const {username, jobId} = values;
-    const data = {username:username, id:jobId}
+    console.log(values);
+    // const {username, jobId} = values;
+    // const data = {username:username, id:jobId}
 
-    let res = this.request(`users/${username}/jobs/${jobId}`, data, 'post')
-    console.log(res)
+    // let res = this.request(`users/${username}/jobs/${jobId}`, data, 'post')
+    // console.log(res)
 
   }
 

@@ -3,8 +3,6 @@ import JoblyApi from '../api'
 import { Redirect } from 'react-router-dom';
 import CurrentUserContext from "../CurrentUserContext";
 
-
-
 import { 
     Card, 
     CardHeader, 
@@ -12,15 +10,22 @@ import {
     CardText 
 } from 'reactstrap';
 import SearchBar from '../SearchBar';
+import JobCard from './JobCard';
 
 
 
 
 
 const Jobs = () => {
-    const user = useContext(CurrentUserContext)
+
+    const {currentUser, apply, hasAppliedToJob} = useContext(CurrentUserContext)
+
+
+  
+
+
     
-    if(!user){
+    if(!currentUser){
         return <Redirect to="/"/>
     }
     const [jobs, setJobs] = useState([]);
@@ -50,14 +55,10 @@ const Jobs = () => {
         setJobs(jobs);
         }
 
-        const handleSubmit = (e) =>{
-            e.preventDefault();
-            let values = {username:user.user.username, jobId:e.target.id}
-            console.log(user);
-            JoblyApi.apply(values)
-                
-        }
-        console.log(jobs)
+
+
+
+
 
 
     return (
@@ -67,36 +68,13 @@ const Jobs = () => {
             <SearchBar search={search} />
             { jobList.map(job => (
             
-                < Card 
-                    className="my-2"
-                    color="primary"
-                    outline
-                    style={{
-                    color:"red" ,
-                    borderColor:"black",
-                    borderWidth:"medium",
-                    borderStyle:'solid',
-                    width: "50%",
-                    margin:" 10px "}}>
-                <CardHeader>
-                    {job.title}     
-
-                </CardHeader>
-                <CardBody>
                 
-                    {job.equity ? <CardText> Equity: {job.equity}</CardText>: ""}
-                   
-
-                    { job.salary ? <CardText> Salary: ${job.salary} </CardText> : ''}
-                    
-                      
-                </CardBody>
-                <form id={job.id} onSubmit={handleSubmit}>
-                <button  className='btn btn-sm btn-primary'> Apply</button>
-                </form>
-                
-                </Card>
-                
+                <JobCard values={{
+                    id:job.id,
+                    companyName:job.companyName,
+                    equity:job.equity,
+                    salary:job.salary,
+                    title:job.title  }}/>
                 
             ))}
             </div>

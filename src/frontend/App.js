@@ -8,7 +8,7 @@ import Company from "./companies/Company";
 import Companies from "./companies/Companies";
 import Jobs from "./jobs/Jobs";
 import SignupForm from "./SignupForm";
-import JoblyApi from "../backend/api";
+import JoblyApi from "../frontend/api";
 import LoginForm from "./LogInForm";
 import ProfileEditForm from "./Profile";
 import jwt from "jsonwebtoken";
@@ -22,6 +22,8 @@ function App() {
 
   const [currentUser, setCurrentUser] = useState("");
   const [token, setToken] = useLocalStorage(TOKEN_STORAGE_ID);
+  const [applicationIds, setApplicationIds] = useState(new Set([]));
+
 
 useEffect(() => {
   if(token && token.token){
@@ -57,11 +59,31 @@ function logout() {
   
 }
 
+function hasAppliedToJob(id) {
+
+  console.log(applicationIds, applicationIds.has(id) )
+
+  return applicationIds.has(id);
+}
+
+  /** Apply to a job: make API call and update set of application IDs. */
+  function apply(id) {
+    if (hasAppliedToJob(id)) return;
+
+    JoblyApi.apply(currentUser.user.username, id);
+    setApplicationIds(new Set([...applicationIds, id]));
+
+  }
+
+
+
+
+
 
   return (
     <div className="App">
       <BrowserRouter>
-      <CurrentUserContext.Provider value={currentUser}>
+      <CurrentUserContext.Provider value={{currentUser, apply, hasAppliedToJob}}>
         <NavBar logout={logout}/>
         <main>
           <Switch>

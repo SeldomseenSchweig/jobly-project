@@ -1,5 +1,5 @@
 import React, {useState, useEffect,useContext  } from 'react'
-import JoblyApi from '../../backend/api'
+import JoblyApi from '../../frontend/api'
 import CompanyCard from './CompanyCard';
 import CurrentUserContext from '../CurrentUserContext';
 import SearchBar from '../SearchBar';

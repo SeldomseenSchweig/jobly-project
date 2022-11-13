@@ -6,8 +6,9 @@ import CurrentUserContext from "../CurrentUserContext";
 
 
 function NavBar({logout}) {
+
   const user = useContext(CurrentUserContext)
- 
+ console.log()
     
   
   return (
@@ -69,8 +70,8 @@ function NavBar({logout}) {
             <NavLink to="/profile"> Profile</NavLink>
           </NavItem>  
           <NavItem onClick={logout}> 
-            <NavLink to="/"> Log out of {user.user.username} 
-            </NavLink>
+             <NavLink to="/"> Log out of { !user.currentUser ? "" : user.currentUser.user.username} 
+            </NavLink> 
           </NavItem> 
           </Nav>
           </Navbar>

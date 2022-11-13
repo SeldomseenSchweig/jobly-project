@@ -4,20 +4,32 @@ import CurrentUserContext from "./CurrentUserContext";
 
 const ProfileEditForm = () =>{
     const user = useContext(CurrentUserContext)
-    // console.log(user);
+    // console.log(user.currentUser.user);
+    let initialState
 
- 
-
-    const initialState = {
-        email:`${!user ? "" : user.user.email}`,
-        firstName:`${!user ? "" : user.user.firstName}`,
-        lastName:`${!user ? "" : user.user.lastName}`,
+ if(!user.currentUser){
+     initialState = {
+        email:"",
+        firstName:"",
+        lastName:"",
         password:""
 
     }
 
+ }else{
+    initialState = {
+        email:user.currentUser.user.email,
+        firstName:user.currentUser.user.firstName,
+        lastName:user.currentUser.user.lastName  ,
+        password:""
+
+    }
+     
+ }
+
+console.log(initialState)
+
     const [formData, setFormData] = useState(initialState)
-    console.log(formData)
 
     const handleChanges = e => {
         const {name, value} = e.target
@@ -47,7 +59,7 @@ const ProfileEditForm = () =>{
         <form className="offset-lg-4" onSubmit={handleSubmit}>
             <div className="mb-3"> 
                 <label className="form-label" htmlFor="username"> Username</label>
-                {!user.user ? <></>: <h4>{user.user.username}</h4>}
+                {!user.currentUser ? <></>: <h4>{user.currentUser.user.username}</h4>}
             </div>
 
 
@@ -58,7 +70,7 @@ const ProfileEditForm = () =>{
                 id="firstName" 
                 type="text" 
                 name="firstName"
-                placeholder={!user.user ? "":  user.user.firstName} 
+                placeholder={!user.currentUser ? "":  user.currentUser.user.firstName} 
                 value={formData.firstName} 
                 onChange={handleChanges}/>
             </div>
@@ -71,7 +83,7 @@ const ProfileEditForm = () =>{
                 id="lastName" 
                 type="text" 
                 name="lastName"
-                placeholder={!user.user ? "":  user.user.lastName} 
+                placeholder={!user.currentUser ? "":  user.currentUser.user.lastName} 
                 value={formData.lastName} 
                 onChange={handleChanges}/>
 
@@ -86,7 +98,7 @@ const ProfileEditForm = () =>{
                 id="email" 
                 type="email" 
                 name="email"
-                placeholder={!user.user ? "":  user.user.email} 
+                placeholder={!user.currentUser ? "":  user.currentUser.user.email} 
                 value={formData.email} 
                 onChange={handleChanges}/>
             </div>
