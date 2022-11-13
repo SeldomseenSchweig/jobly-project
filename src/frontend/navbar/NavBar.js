@@ -5,7 +5,7 @@ import { Navbar, Nav, NavItem } from "reactstrap";
 import CurrentUserContext from "../CurrentUserContext";
 
 
-function NavBar(logout) {
+function NavBar({logout}) {
   const user = useContext(CurrentUserContext)
  
     
@@ -38,7 +38,7 @@ function NavBar(logout) {
           </NavItem>
         </Nav>
       </Navbar> */}
-      {!user.user ? <Navbar expand="md">
+      {!user ? <Navbar expand="md">
         <NavLink exact to="/" className="navbar-brand">
          Jobly
         </NavLink>
@@ -51,7 +51,8 @@ function NavBar(logout) {
             <NavLink to="/login"> Login</NavLink>
           </NavItem>
         </Nav>
-      </Navbar> :  
+      </Navbar> :
+
       <Navbar expand="md"><NavLink exact to="/" className="navbar-brand">
          Jobly
         </NavLink>

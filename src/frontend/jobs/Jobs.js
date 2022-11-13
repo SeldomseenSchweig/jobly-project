@@ -1,7 +1,8 @@
 import React, {useState, useEffect,useContext } from 'react'
-import JoblyApi from '../../backend/api'
+import JoblyApi from '../api'
 import { Redirect } from 'react-router-dom';
 import CurrentUserContext from "../CurrentUserContext";
+
 
 
 import { 
@@ -11,7 +12,6 @@ import {
     CardText 
 } from 'reactstrap';
 import SearchBar from '../SearchBar';
-import { Button } from 'bootstrap';
 
 
 
@@ -50,6 +50,14 @@ const Jobs = () => {
         setJobs(jobs);
         }
 
+        const handleSubmit = (e) =>{
+            e.preventDefault();
+            let values = {username:user.user.username, jobId:e.target.id}
+            console.log(user);
+            JoblyApi.apply(values)
+                
+        }
+        console.log(jobs)
 
 
     return (
@@ -79,10 +87,13 @@ const Jobs = () => {
                     {job.equity ? <CardText> Equity: {job.equity}</CardText>: ""}
                    
 
-                    { job.salary ? <CardText> Salary: ${job.salary} Hello</CardText> : ''}
+                    { job.salary ? <CardText> Salary: ${job.salary} </CardText> : ''}
                     
                       
                 </CardBody>
+                <form id={job.id} onSubmit={handleSubmit}>
+                <button  className='btn btn-sm btn-primary'> Apply</button>
+                </form>
                 
                 </Card>
                 

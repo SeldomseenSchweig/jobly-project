@@ -67,7 +67,7 @@ class JoblyApi {
     /**register website */
 
   static async register(values){
-    console.log(values)
+    
     let data = {
       username:values.username,
       password:values.password,
@@ -103,10 +103,23 @@ class JoblyApi {
 
   }
 
+  static async update(values){
+
+    
+
+  }
+  static async apply(values){
+    const {username, jobId} = values;
+    const data = {username:username, id:jobId}
+
+    let res = this.request(`users/${username}/jobs/${jobId}`, data, 'post')
+    console.log(res)
+
+  }
+
 
 
 }
-
 // for now, put token ("testuser" / "password" on class)
 
 

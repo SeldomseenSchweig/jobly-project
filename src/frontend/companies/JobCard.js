@@ -7,7 +7,7 @@ import {
     CardText,
     
 } from 'reactstrap';
-import '../../Card.css'
+import '../Card.css'
 
 const JobCard =({job})=>{
 
@@ -23,7 +23,7 @@ const JobCard =({job})=>{
                         Equity: {job.equity}
                     </CardText>
                     <CardText>
-                        Salary ${job.salary} Hello
+                        Salary ${job.salary}
                     </CardText>
                   
                     </CardBody>

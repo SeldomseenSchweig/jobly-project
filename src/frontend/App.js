@@ -6,11 +6,11 @@ import NavBar from "./navbar/NavBar";
 import { Route, Switch } from "react-router-dom";
 import Company from "./companies/Company";
 import Companies from "./companies/Companies";
-import Jobs from "./companies/jobs/Jobs";
+import Jobs from "./jobs/Jobs";
 import SignupForm from "./SignupForm";
 import JoblyApi from "../backend/api";
 import LoginForm from "./LogInForm";
-import ProfileEditForm from "./ProfileEditForm";
+import ProfileEditForm from "./Profile";
 import jwt from "jsonwebtoken";
 import CurrentUserContext from "./CurrentUserContext";
 import useLocalStorage from "./hooks/useLocalStorage";
@@ -24,10 +24,8 @@ function App() {
   const [token, setToken] = useLocalStorage(TOKEN_STORAGE_ID);
 
 useEffect(() => {
-  console.log(token)
-  if(token.token){
+  if(token && token.token){
     let info = jwt.decode(token.token)
-    
     JoblyApi.token = token.token
     getUser(info.username);
     
@@ -51,10 +49,12 @@ async function getUser(username){
   let user = await JoblyApi.getUser(username);
   setCurrentUser(user)
 }
+
 function logout() {
+  
   setCurrentUser(null);
   setToken(null);
-  JoblyApi.token=null
+  
 }
 
 
