@@ -3,12 +3,7 @@ import JoblyApi from '../api'
 import { Redirect } from 'react-router-dom';
 import CurrentUserContext from "../CurrentUserContext";
 
-import { 
-    Card, 
-    CardHeader, 
-    CardBody, 
-    CardText 
-} from 'reactstrap';
+
 import SearchBar from '../SearchBar';
 import JobCard from './JobCard';
 
@@ -18,7 +13,8 @@ import JobCard from './JobCard';
 
 const Jobs = () => {
 
-    const {currentUser, apply, hasAppliedToJob} = useContext(CurrentUserContext)
+    const {currentUser} = useContext(CurrentUserContext)
+    
 
 
   
@@ -54,9 +50,6 @@ const Jobs = () => {
         let jobs = await JoblyApi.getJobs(name);
         setJobs(jobs);
         }
-
-
-
 
 
 

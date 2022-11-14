@@ -24,7 +24,6 @@ function App() {
   const [token, setToken] = useLocalStorage(TOKEN_STORAGE_ID);
   const [applicationIds, setApplicationIds] = useState(new Set([]));
 
-
 useEffect(() => {
   if(token && token.token){
     let info = jwt.decode(token.token)
@@ -50,6 +49,7 @@ async function login (values){
 async function getUser(username){
   let user = await JoblyApi.getUser(username);
   setCurrentUser(user)
+  setApplicationIds(new Set(user.user.applications))
 }
 
 function logout() {
@@ -61,7 +61,6 @@ function logout() {
 
 function hasAppliedToJob(id) {
 
-  console.log(applicationIds, applicationIds.has(id) )
 
   return applicationIds.has(id);
 }
@@ -70,7 +69,7 @@ function hasAppliedToJob(id) {
   function apply(id) {
     if (hasAppliedToJob(id)) return;
 
-    JoblyApi.apply(currentUser.user.username, id);
+    JoblyApi.apply({username:currentUser.user.username, jobId:id});
     setApplicationIds(new Set([...applicationIds, id]));
 
   }

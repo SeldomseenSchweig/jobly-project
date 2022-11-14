@@ -103,21 +103,28 @@ class JoblyApi {
 
   }
 
-  static async update(values){
 
-    
-
-  }
   static async apply(values){
-    console.log(values);
-    // const {username, jobId} = values;
-    // const data = {username:username, id:jobId}
+    console.log(values)
+    const {username, jobId} = values;
+    const data = {username:username, id:jobId}
 
-    // let res = this.request(`users/${username}/jobs/${jobId}`, data, 'post')
-    // console.log(res)
+    let res = this.request(`users/${username}/jobs/${jobId}`, data, 'post')
+    return res
 
   }
+ 
+  static async update (username,data){
+   
 
+  
+    let res = this.request(`users/${username}`, data, 'patch')
+    console.log(res)
+    return res.user
+
+
+
+  }
 
 
 }

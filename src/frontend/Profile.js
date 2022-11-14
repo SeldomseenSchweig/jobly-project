@@ -1,35 +1,40 @@
-import React, {useContext, useState} from "react";
+import React, {useContext, useState,useEffect} from "react";
+import JoblyApi from "./api";
 import CurrentUserContext from "./CurrentUserContext";
 
 
 const ProfileEditForm = () =>{
     const user = useContext(CurrentUserContext)
-    // console.log(user.currentUser.user);
-    let initialState
-
- if(!user.currentUser){
-     initialState = {
-        email:"",
+    const [formData, setFormData] = useState(
+        { email:"",
         firstName:"",
-        lastName:"",
-        password:""
+        lastName:""  ,
+        password:""})
 
-    }
 
- }else{
-    initialState = {
-        email:user.currentUser.user.email,
-        firstName:user.currentUser.user.firstName,
-        lastName:user.currentUser.user.lastName  ,
-        password:""
+    useEffect(() => {
+        if(!user.currentUser){
+            return
+        }
+    
+        const initialState = {
+            email:user.currentUser.user.email,
+            firstName:user.currentUser.user.firstName,
+            lastName:user.currentUser.user.lastName  ,
+            password:""
+    
+        }
 
-    }
+        setFormData(initialState)
+       
+      }
+      , [user]);
      
- }
+ 
 
-console.log(initialState)
 
-    const [formData, setFormData] = useState(initialState)
+   
+
 
     const handleChanges = e => {
         const {name, value} = e.target
@@ -39,17 +44,21 @@ console.log(initialState)
             [name]:value
         }))
     }
-    // const handleUsernameChange = (e) =>{
-    //     setUsername(e.target.value);
-    // }
-    // const handleEmailChange = (e) =>{
-    //     setEmail(e.target.value);
-    // }
+
     const handleSubmit = (e) =>{
-        e.preventDefault();
-        console.log(formData);
-        
-        setFormData(initialState);
+        let profileData = {
+            firstName: formData.firstName,
+            lastName: formData.lastName,
+            email: formData.email,
+            password: formData.password,
+          };
+         let username = user.currentUser.user.username
+        JoblyApi.update(username, profileData)        
+        setFormData({ 
+            email:"",
+        firstName:"",
+        lastName:""  ,
+        password:""});
 
     }
 

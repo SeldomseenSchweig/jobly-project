@@ -1,4 +1,4 @@
-import React, {useContext, useState} from 'react'
+import React, {useContext, useState, useEffect} from 'react'
 import CurrentUserContext from '../CurrentUserContext';
 import { 
     Card, 
@@ -12,7 +12,11 @@ import {
 const JobCard = ({values}) =>{
 
     const {apply, hasAppliedToJob} = useContext(CurrentUserContext)
-    const [applied, setApplied] = useState();
+    const [applied, setApplied] = useState(hasAppliedToJob(values.id));
+    
+
+
+    
 
     const handleSubmit = (e) =>{
         e.preventDefault();
